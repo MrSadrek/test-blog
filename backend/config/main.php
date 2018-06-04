@@ -13,6 +13,13 @@ return [
     'bootstrap' => ['log'],
     'modules' => [],
     'components' => [
+        'view' => [
+            'theme' => [
+                'pathMap' => [
+                    '@app/views' => '@backend/views'
+                ],
+            ],
+        ],
         'request' => [
             'csrfParam' => '_csrf-backend',
         ],
@@ -37,14 +44,20 @@ return [
         'errorHandler' => [
             'errorAction' => 'site/error',
         ],
-        /*
+
         'urlManager' => [
             'enablePrettyUrl' => true,
-            'showScriptName' => false,
+            'showScriptName' => true,
+            'enableStrictParsing' => true,
             'rules' => [
+                ['pattern' => '', 'route' => 'article/article-list'],
+                ['pattern' => 'article/<id:[0-9]+>', 'route' => 'article/article-form'],
+                ['pattern' => 'article', 'route' => 'article/article-form'],
+                ['pattern' => 'articles', 'route' => 'article/article-list'],
+                ['pattern' => 'frontend', 'route' => 'site/frontend'],
             ],
         ],
-        */
+
     ],
     'params' => $params,
 ];
